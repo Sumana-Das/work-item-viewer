@@ -1,0 +1,72 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: auto;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #0078d4;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #005a9e;
+}
+
+.error {
+  color: red;
+}
+
+.work-item-details {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.table-container {
+  padding: 10px;
+  overflow-x: auto; /* Horizontal scroll for small screens */
+}
+
+table {
+  width: 100%; /* Full-width table */
+}
+
+th, td {
+  padding: 10px; /* Adjust spacing */
+  text-align: center; /* Align content */
+}
+
+th {
+  background-color: #f2f2f2; /* Header background color */
+}
+
+/* Add responsive styles here */
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+}
