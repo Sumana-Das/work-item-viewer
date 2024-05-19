@@ -4,12 +4,11 @@ import RelatedItems from './RelatedItems';
 
 describe('RelatedItems Component', () => {
   it('renders related item IDs', () => {
-    const relatedItems = ['123', '456', '789'];
+    const relatedItems = ['14', '15'];
 
     const { getByText } = render(<RelatedItems relatedItems={relatedItems} />);
 
-    expect(getByText('123')).toBeInTheDocument();
-    expect(getByText('456')).toBeInTheDocument();
-    expect(getByText('789')).toBeInTheDocument();
+    expect(getByText('14')).toBeInTheDocument();
+    expect(getByText('15')).toBeInTheDocument();
   });
 });

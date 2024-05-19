@@ -10,15 +10,14 @@ The API is used here is as below:
 https://dev.azure.com/{orgName}/{project}/_apis/wit/workitems/{id}?api-version=7.1-preview.3&$expand=relations
 
 This API will fetch the workItem details based on the work item ID.
-
 In Azure DevOps I have created a dummy organization with dummy project with minimal details.
 
-*URL:* https://dev.azure.com/dassumanaOrg/FabrikamFiber/
-*Organization Name:* dassumanaOrg
-*Project Name:* FabrikamFiber
-*Access Level:* public
+**URL:** https://dev.azure.com/dassumanaOrg/FabrikamFiber/
+**Organization Name:** *dassumanaOrg*
+**Project Name:** *FabrikamFiber*
+**Access Level:** *public*
 
-For testing purpose developer can feel free to change his/ her own organization name under *orgName* variable in the backend API *GetWorkItems()* to check their own organization level work items. However, Developer/Tester need to enter their own PAT (personal Access Token) under *personalAccessToken* variable in that case.
+For testing purpose developer can feel free to change his/ her own organization name under **orgName** variable in the backend API **GetWorkItems()** to check their own organization level work items. However, Developer/Tester need to enter their own PAT (personal Access Token) under **personalAccessToken** variable in that case.
 
 ## Backend Application Run
 
@@ -56,3 +55,4 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.
+**Basic test cases are written however need to modify and mock the api response to run test cases successfully**
