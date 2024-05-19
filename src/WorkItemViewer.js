@@ -82,7 +82,7 @@ const WorkItemViewer = () => {
               <tbody>
                 <tr key={workItemData['System.Title']}>
                   <td>{workItemData['System.Title']}</td>
-                  <td>{workItemData['System.Description'].replace(/(<([^>]+)>)/ig, '')}</td>
+                  <td>{workItemData['System.Description']?.replace(/(<([^>]+)>)/ig, '')}</td>
                   <td>{workItemData['System.State']}</td>
                   <td>{workItemData['System.AssignedTo']?.displayName}</td>
                 </tr>
