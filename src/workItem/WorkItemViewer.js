@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './WorkItemViewer.css';
-import RelatedItems from './RelatedItems';
+import RelatedItems from '../relatedItem/RelatedItems';
+import { fetchWorkItemDetails } from '../apis/WorkItemAPI';
 
 const WorkItemViewer = () => {
   const [projectName, setProjectName] = useState('');
@@ -11,9 +11,7 @@ const WorkItemViewer = () => {
   const [error, setError] = useState(null);
   const fetchRelatedItems = async () => {
     try {
-        const response = await axios.get(
-            `http://localhost:5000/api/WorkItem/GetRelatedWorkItems/${projectName}/${workItemId}`
-        );
+        const response = await fetchWorkItemDetails(projectName, workItemId);
         const relations = response.data.relations || [];
         const relatedIds = relations
             .filter((rel) => rel.rel === 'System.LinkTypes.Hierarchy-Forward')
@@ -28,7 +26,7 @@ const WorkItemViewer = () => {
 };
   const fetchWorkItemData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/WorkItem/GetWorkItems/${projectName}/${workItemId}`);
+      const response = await fetchWorkItemDetails(projectName, workItemId);
 
       if (response.statusText === 'OK') {
         const data = response.data;
