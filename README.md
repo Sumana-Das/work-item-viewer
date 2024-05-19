@@ -21,6 +21,11 @@ For testing purpose developer can feel free to change his/ her own organization 
 
 ## Backend Application Run
 
+- Clone the repo [WorkItemService](https://github.com/Sumana-Das/WorkItemService)
+- Open terminal and navigate to the folder location where the repo is cloned
+- Run `dotnet run` command
+- when the application is in running mode run the front end application
+
 ### `dotnet run`
 
 Builds and runs the app in the development mode.\
@@ -47,7 +52,7 @@ Installs all the dependencies which is needed to run the application
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -56,3 +61,18 @@ You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.
 **Basic test cases are written however need to modify and mock the api response to run test cases successfully**
+
+## Application View
+
+**Initial View:**
+
+<img width="602" alt="Initial view" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/bebb79d9-616c-4f7e-9a34-495e2b73a62c">
+
+**Work Item Details View:**
+
+<img width="653" alt="workdetails" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/8f2744f3-0dba-4b45-bd67-5616c7dffd63">
+
+**Responsive View:**
+
+<img width="379" alt="responsiveView" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/a615c397-0c69-4e49-9209-05583799801c">
+
