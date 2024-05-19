@@ -3,6 +3,11 @@
 This is an web application where we can enter project name and work item ID to check the work item details from Azure DevOps.
 To run this application we have to run the backend API application first and then the frontend application to see the work item details successfully.
 
+### Overview
+Users can open the application in local and provide the **project name and work item ID which are mandatory fields**. If the project name or the item id is not present in the organization then it will give an error message. **Project name is case insensitive field and work item ID is an integer field**.
+
+By clicking on submit button the application **will show the work item details like title, description, status and assigned to fields** along with another datatable having all the child data associated with that work item. Here **users will be able to see only the related work item ids**.
+
 ## Azure DevOps API and work items hierarchy
 
 The API is used here is as below:
