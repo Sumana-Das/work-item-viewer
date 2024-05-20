@@ -8,7 +8,7 @@ Users can open the application in local and provide the **project name and work 
 
 By clicking on submit button the application **will show the work item details like title, description, status and assigned to fields** along with another datatable having all the child data associated with that work item. Here **users will be able to see only the related work item ids**.
 
-## Azure DevOps API and work items hierarchy
+## Azure DevOps API and WIQL and work items hierarchy
 
 The API is used here is as below:
 
@@ -16,6 +16,8 @@ https://dev.azure.com/{orgName}/{project}/_apis/wit/workitems/{id}?api-version=7
 
 This API will fetch the workItem details based on the work item ID.
 In Azure DevOps I have created a dummy organization with dummy project with minimal details.
+
+Apart from that WIQL has been used to fetch the parent-child relation
 
 **URL:** https://dev.azure.com/dassumanaOrg/FabrikamFiber/
 **Organization Name:** *dassumanaOrg*
@@ -39,9 +41,9 @@ The authentication to fetch the Azure DevOps API is used here in PAT.
 
 To test the API below are the steps to follow:
 
-- expand WorkItem 
+- expand WorkItem APIs
 - click on 'Try it out' button 
-- enter project and id parameters
+- enter required parameters
 - click on Execute
 - this will give Curl URL to run, Request URL and get the data in Response body with 200 status for Success and valid input scenario
 - for invalid input the response body will give error message with 400 status

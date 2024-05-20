@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './WorkItemViewer.css';
 import WorkItemTree from '../relatedItem/RelatedItems';
-import { fetchWorkItemDetails, getWorkItemsByWIQL } from '../apis/WorkItemAPI';
+import { fetchWorkItemDetails, getWorkItemsByWIQL, getWorkItemsByState, getWorkItemsByType } from '../apis/WorkItemAPI';
 
 const WorkItemViewer = () => {
   const [projectName, setProjectName] = useState('');
   const [workItemId, setWorkItemId] = useState('');
+  const [workItemType, setWorkItemType] = useState('');
+  const [workItemState, setWorkItemState] = useState('');
   const [workItemData, setWorkItemData] = useState(null);
   const [workItemWithRelations, setWorkItemWithRelations] = useState([]);
   const [error, setError] = useState(null);
@@ -37,10 +39,51 @@ const WorkItemViewer = () => {
       setError('No data found');
     }
   };
+  const fetchRelatedItemsByType = async () => {
+    const response = await getWorkItemsByType(projectName, workItemId, workItemType);
+    if (response.length > 0) {
+      setWorkItemWithRelations(response);
+      setError(null);
+    } else {
+      setWorkItemWithRelations(null);
+      setError('No data found');
+    }
+  };
+  const fetchRelatedItemsByState = async () => {
+    const response = await getWorkItemsByState(projectName, workItemId, workItemState);
+    if (response.length > 0) {
+      setWorkItemWithRelations(response);
+      setError(null);
+    } else {
+      setWorkItemWithRelations(null);
+      setError('No data found');
+    }
+  };
+
+  const filterByType = (type) => {
+    setWorkItemType(type);
+    setWorkItemState('');
+  }
+
+  const filterByState = (state) => {
+    setWorkItemType('');
+    setWorkItemState(state);
+  }
 
   const onhandleClick = () => {
     fetchWorkItemData();
-    fetchRelatedItems();
+    if(workItemType !== '')
+    {
+      fetchRelatedItemsByType();
+    }
+    else if(workItemState !== '')
+    {
+      fetchRelatedItemsByState();
+    }
+    else
+    {
+      fetchRelatedItems();
+    }
   }
 
   return (
@@ -59,9 +102,26 @@ const WorkItemViewer = () => {
           value={workItemId}
           onChange={(e) => setWorkItemId(e.target.value)}
         />
+        <div>
+          <h3>Filter By (Optional)</h3>
+          <input
+            type="text"
+            placeholder="Work Item Type"
+            value={workItemType}
+            onChange={(e) => filterByType(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Work Status"
+            value={workItemState}
+            onChange={(e) => filterByState(e.target.value)}
+          />
+        </div>
+        <div>
         <button type="submit" onClick={onhandleClick}>
           Fetch Work Item
         </button>
+        </div>
       </div>
       {error && <p className="error">{error}</p>}
       {workItemData && (
