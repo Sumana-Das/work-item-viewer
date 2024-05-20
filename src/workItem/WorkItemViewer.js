@@ -88,7 +88,7 @@ const WorkItemViewer = () => {
       )}
       {workItemWithRelations.length > 0 && (
         <div>
-            <WorkItemTree workItem={workItemWithRelations} />
+            <WorkItemTree workItem={workItemWithRelations} workItemId={workItemId} />
         </div>
       )}
     </div>

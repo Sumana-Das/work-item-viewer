@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './RelatedItems.css';
 
-const WorkItemTree = ({ workItem }) => {
-
+const WorkItemTree = ({ workItem, workItemId }) => {
+    const parsedId = parseInt(workItemId, 10);
     const columns = ["Work Item ID", "Title", "Work Item Type", "State"];
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
@@ -28,7 +28,7 @@ const WorkItemTree = ({ workItem }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {currentItems.map((item) => (
+                    {currentItems.filter((item) => item.id !== parsedId).map((item) => (
                         <tr key={item.id}>
                         <td>{item.fields['System.Id']}</td>
                         <td>{item.fields['System.Title']}</td>
