@@ -1,29 +1,15 @@
 import React, { useState } from 'react';
 import './WorkItemViewer.css';
-import RelatedItems from '../relatedItem/RelatedItems';
-import { fetchWorkItemDetails } from '../apis/WorkItemAPI';
+import WorkItemTree from '../relatedItem/RelatedItems';
+import { fetchWorkItemDetails, getWorkItemsByWIQL } from '../apis/WorkItemAPI';
 
 const WorkItemViewer = () => {
   const [projectName, setProjectName] = useState('');
   const [workItemId, setWorkItemId] = useState('');
   const [workItemData, setWorkItemData] = useState(null);
-  const [relatedItems, setRelatedItemsDetails] = useState([]);
+  const [workItemWithRelations, setWorkItemWithRelations] = useState([]);
   const [error, setError] = useState(null);
-  const fetchRelatedItems = async () => {
-    try {
-        const response = await fetchWorkItemDetails(projectName, workItemId);
-        const relations = response.data.relations || [];
-        const relatedIds = relations
-            .filter((rel) => rel.rel === 'System.LinkTypes.Hierarchy-Forward')
-            .map((rel) => ({
-            id: rel.url.split('/').pop(),
-            relation: rel.attributes.name,
-            }));
-            setRelatedItemsDetails(relatedIds);
-    } catch (error) {
-        console.error('Error fetching related items:', error);
-    }
-};
+
   const fetchWorkItemData = async () => {
     try {
       const response = await fetchWorkItemDetails(projectName, workItemId);
@@ -41,6 +27,17 @@ const WorkItemViewer = () => {
       setError('An error occurred. Please try again later.');
     }
   };
+  const fetchRelatedItems = async () => {
+    const response = await getWorkItemsByWIQL(projectName, workItemId);
+    if (response.length > 0) {
+      setWorkItemWithRelations(response);
+      setError(null);
+    } else {
+      setWorkItemWithRelations(null);
+      setError('No data found');
+    }
+  };
+
   const onhandleClick = () => {
     fetchWorkItemData();
     fetchRelatedItems();
@@ -48,23 +45,24 @@ const WorkItemViewer = () => {
 
   return (
     <div className="container">
-      <h1>Azure DevOps Work Item Viewer</h1>
-      <input
-        type="text"
-        placeholder="Project Name"
-        value={projectName}
-        onChange={(e) => setProjectName(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Work Item ID"
-        value={workItemId}
-        onChange={(e) => setWorkItemId(e.target.value)}
-      />
-      <button type="submit" onClick={onhandleClick}>
-        Fetch Work Item
-      </button>
-
+      <div>
+        <h1>Azure DevOps Work Item Viewer</h1>
+        <input
+          type="text"
+          placeholder="Project Name"
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Work Item ID"
+          value={workItemId}
+          onChange={(e) => setWorkItemId(e.target.value)}
+        />
+        <button type="submit" onClick={onhandleClick}>
+          Fetch Work Item
+        </button>
+      </div>
       {error && <p className="error">{error}</p>}
       {workItemData && (
           <div className="work-item-details">
@@ -86,11 +84,13 @@ const WorkItemViewer = () => {
                 </tr>
               </tbody>
             </table>
-          
-            <RelatedItems projectName={projectName} workItemId={workItemId} workDetails={relatedItems} />
           </div>
       )}
-      
+      {workItemWithRelations.length > 0 && (
+        <div>
+            <WorkItemTree workItem={workItemWithRelations} />
+        </div>
+      )}
     </div>
   );
 };
