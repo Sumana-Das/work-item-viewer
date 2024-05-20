@@ -48,23 +48,22 @@ button:hover {
 
 .table-container {
   padding: 10px;
-  overflow-x: auto; /* Horizontal scroll for small screens */
+  overflow-x: auto;
 }
 
 table {
-  width: 100%; /* Full-width table */
+  width: 100%;
 }
 
 th, td {
-  padding: 10px; /* Adjust spacing */
-  text-align: center; /* Align content */
+  padding: 10px;
+  text-align: center;
 }
 
 th {
-  background-color: #f2f2f2; /* Header background color */
+  background-color: #f2f2f2;
 }
 
-/* Add responsive styles here */
 @media screen and (max-width: 480px) {
   .container {
     padding: 10px;
