@@ -4,9 +4,9 @@ This is an web application where we can enter project name and work item ID to c
 To run this application we have to run the backend API application first and then the frontend application to see the work item details successfully.
 
 ### Overview
-Users can open the application in local and provide the **project name and work item ID which are mandatory fields**. If the project name or the item id is not present in the organization then it will give an error message. **Project name is case insensitive field and work item ID is an integer field**.
+Users can open the application in local and provide the **project name and work item ID which are mandatory fields** and user can able to **filter thye work items based on work state and work item type** which are **optional fields**. If the project name or the item id is not present in the organization then it will give an error message. **Project name is case insensitive field and work item ID is an integer field**.
 
-By clicking on submit button the application **will show the work item details like title, description, status and assigned to fields** along with another datatable having all the child data associated with that work item. Here **users will be able to see only the related work item ids**.
+By clicking on submit button the application **will show the work item details like title, description, status and assigned to fields** along with another datatable having all the child item details associated with that work item.
 
 ## Azure DevOps API and WIQL and work items hierarchy
 
@@ -29,6 +29,7 @@ For testing purpose developer can feel free to change his/ her own organization 
 ## Backend Application Run
 
 - Clone the repo [WorkItemService](https://github.com/Sumana-Das/WorkItemService)
+- This is a private repo as we are using PAT for authentication
 - Open terminal and navigate to the folder location where the repo is cloned
 - Run `dotnet run` command
 - when the application is in running mode run the front end application
@@ -73,13 +74,18 @@ Launches the test runner in the interactive watch mode.
 
 **Initial View:**
 
-<img width="602" alt="Initial view" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/bebb79d9-616c-4f7e-9a34-495e2b73a62c">
+<img width="785" alt="image" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/bd1634c0-8057-4e50-9461-654d4ce0359f">
 
-**Work Item Details View:**
+**Work Item Details View (without filter):**
 
-<img width="653" alt="workdetails" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/8f2744f3-0dba-4b45-bd67-5616c7dffd63">
+<img width="785" alt="image" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/109f64fb-fb73-4f50-a73d-06658112c410">
+
+**Work Item Details View (with filter):**
+
+<img width="746" alt="image" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/492bdb9a-c503-4dba-97c2-a1f97abb700b">
 
 **Responsive View:**
 
-<img width="379" alt="responsiveView" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/a615c397-0c69-4e49-9209-05583799801c">
+<img width="364" alt="image" src="https://github.com/Sumana-Das/work-item-viewer/assets/76615241/42ec640f-50f1-44f9-a33c-7d8604b06189">
+
 
